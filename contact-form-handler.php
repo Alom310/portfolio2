@@ -3,7 +3,9 @@
     $error  = "";
 if(isset($_POST['submit']))
 {
-    require 'phpmailer/PHPMailerAutoload.php';
+    require 'phpmailer/Exception.php';
+    require 'phpmailer/PHPMailer.php';
+    require 'phpmailer/SMTP.php';
     $mail = new PHPMailer;
     //smtp settings
     $mail->isSMTP(); // send as HTML
