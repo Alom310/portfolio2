@@ -1,20 +1,22 @@
-<?php 
-    $result = "";
-    $error  = "";
-if(isset($_POST['submit']))
-{
-    require 'phpmailer/Exception.php';
-    require 'phpmailer/PHPMailer.php';
-    require 'phpmailer/SMTP.php';
-    $mail = new PHPMailer;
-    //smtp settings
-    $mail->isSMTP(); // send as HTML
-    $mail->Host = "smtp.gmail.com"; // SMTP servers
-    $mail->SMTPAuth = true; // turn on SMTP authentication
-    $mail->Username = "alomrelay@gmail.com"; // Your mail
-    $mail->Password = 'Relay1234$'; // Your password mail
-    $mail->Port = 587; //specify SMTP Port
-    $mail->SMTPSecure = 'tls';
+<?php
+    require 'phpmailer/Exception.php'
+    require 'phpmailer/PHPmailer.php'
+    require 'phpmailer/SMTP.php'
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception; 
+
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->SMTPAuth   = true;
+    $mail->Host = 'smtp.gmail.com';
+    $mail-> SMTPSecure = 'tls';
+    $mail-> Post = '587';
+    $mail-> usename = 'alomrelay@gmail.com';
+    $mail-> password = 'Relay1234$';
+    $mail-> setForm('alomrelay@gmail.com');
+
     $mail->setFrom($_POST['email'],$_POST['name']);
     $mail->addAddress('alomrelay@gmail.com');
     $mail->addReplyTo($_POST['email'],$_POST['name']);
@@ -29,6 +31,7 @@ if(isset($_POST['submit']))
     {
         $result="Thanks\t" .$_POST['name']. " for contacting us.";
     }
-}
+
+    $mail->smtpClose();
 
 ?>
