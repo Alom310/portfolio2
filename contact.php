@@ -1,3 +1,38 @@
+<?php 
+    $result = "";
+    $error  = "";
+if(isset($_POST['submit']))
+{
+    require 'includes/Exception.php'
+    require 'includes/PHPmailer.php'
+    require 'includes/SMTP.php'
+    $mail = new PHPMailer;
+    //smtp settings
+    $mail->isSMTP(); // send as HTML
+    $mail->Host = "smtp.gmail.com"; // SMTP servers
+    $mail->SMTPAuth = true; // turn on SMTP authentication
+    $mail->Username = "alomrelay@gmail.com"; // Your mail
+    $mail->Password = 'Relay1234$'; // Your password mail
+    $mail->Port = 587; //specify SMTP Port
+    $mail->SMTPSecure = 'tls';
+    $mail->setFrom($_POST['email'],$_POST['name']);
+    $mail->addAddress('alomrelay@gmail.com');
+    $mail->addReplyTo($_POST['email'],$_POST['name']);
+    $mail->isHTML(true);
+    $mail->Subject='Form Submission:' .$_POST['subject'];
+    $mail->Body='<h3>Name :'.$_POST['name'].'<br> Email: '.$_POST['email'].'<br>Message: '.$_POST['message'].'</h3>';
+    if(!$mail->send())
+    {
+        $error = "Something went worng. Please try again.";
+    }
+    else 
+    {
+        $result="Thanks\t" .$_POST['name']. " for contacting us.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,16 +127,16 @@
             <div class="col-md-6 pr-md-5">
               <form action="" method="post" id="contact-form">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Name">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Email">
+                  <input type="text" name="email" class="form-control" placeholder="Your Email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Subject">
+                  <input type="text" name="subject" class="form-control" placeholder="Subject">
                 </div>
                 <div class="form-group">
-                  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                  <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
                 </div>
                 <div class="form-group">
                   <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
