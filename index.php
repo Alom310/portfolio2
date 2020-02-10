@@ -19,7 +19,7 @@
 
     $mail->isHTML(true);
     $mail->Subject = 'Here is the subject';
-    $mail-> Body = 'this is plain text email body';
+    $mail-> Body = '<h1>this is plain text email body</h1>';
     $mail-> addAddress('alomrelay@gmail.com');
     
     if( $mail->Send() ) {
