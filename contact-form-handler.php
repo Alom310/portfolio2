@@ -14,7 +14,7 @@
     $mail->SMTPAuth   = true;
     $mail->Host = 'smtp.gmail.com';
     $mail-> SMTPSecure = 'tls';
-    $mail-> Post = '587';
+    $mail-> Post = 587;
     $mail-> usename = 'alomrelay@gmail.com';
     $mail-> password = 'Relay1234$';
     $mail-> setForm('alomrelay@gmail.com');
