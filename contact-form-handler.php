@@ -1,7 +1,9 @@
 <?php
-    require 'phpmailer/Exception.php'
-    require 'phpmailer/PHPmailer.php'
-    require 'phpmailer/SMTP.php'
+    // require 'phpmailer/Exception.php'
+    // require 'phpmailer/PHPmailer.php'
+    // require 'phpmailer/SMTP.php'
+
+    require 'vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
